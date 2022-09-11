@@ -1,0 +1,20 @@
+[package]
+name = "spaceblock"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.62"
+ctrlc = "3.2.3"
+dotenv = "0.15.0"
+ethers = { version = "0.6", features = ["ws", "openssl"] }
+futures = "0.3.24"
+prost = "0.10.1"
+tokio = { version = "1", features = ["full"] }
+tonic = "0.7.2"
+tonic-reflection = "0.4.0"
+
+[build-dependencies]
+tonic-build = "0.7.2"
