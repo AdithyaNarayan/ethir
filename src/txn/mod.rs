@@ -1,25 +1,24 @@
 use std::{cmp::Ordering, time::SystemTime};
 
-use ethers::types::H160;
+use ethers::types::{TransactionRequest, H160};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct PendingTransaction {
-    pub signed_txn_hash: String,
-    pub signed_txn_payload: String,
-
+    pub transaction_data: TransactionRequest,
     pub original_sender: H160,
-
     pub timeslot: SystemTime,
 }
 
 impl PendingTransaction {
-    pub fn new() -> Self {
+    pub fn new(
+        transaction_data: TransactionRequest,
+        original_sender: H160,
+        timeslot: SystemTime,
+    ) -> Self {
         Self {
-            signed_txn_hash: String::new(),
-            signed_txn_payload: String::new(),
-
-            original_sender: H160::zero(),
-            timeslot: SystemTime::UNIX_EPOCH,
+            transaction_data,
+            original_sender,
+            timeslot,
         }
     }
 }

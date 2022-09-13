@@ -3,6 +3,14 @@
 pub struct AddTransactionRequest {
     #[prost(string, tag="1")]
     pub id: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub from_address: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub to_address: ::prost::alloc::string::String,
+    #[prost(string, tag="4")]
+    pub data: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="5")]
+    pub time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// The response
 #[derive(Clone, PartialEq, ::prost::Message)]

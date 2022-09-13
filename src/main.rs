@@ -1,7 +1,7 @@
 use std::{
     process::exit,
     sync::{Arc, RwLock},
-    time::{Duration, SystemTime},
+    time::Duration,
 };
 
 mod relayer;
@@ -18,7 +18,7 @@ mod server;
 
 use anyhow::Result;
 use dotenv;
-use ethers::providers::{Middleware, Provider, StreamExt, Ws};
+use ethers::providers::{Provider, Ws};
 use futures::future;
 use relayer::Relayer;
 use state::State;
@@ -26,7 +26,6 @@ use tonic::transport::Server;
 
 use api::spaceblock_service_server::SpaceblockServiceServer;
 use server::SpaceblockServiceImpl;
-use txn::PendingTransaction;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -38,15 +37,10 @@ async fn main() -> Result<()> {
 
     let state = Arc::new(RwLock::new(State::new()));
 
-    {
-        let mut temp = PendingTransaction::new();
+    let url = dotenv::var("ETH_WS_URL").expect("Add URL to .env");
+    let provider = Provider::<Ws>::connect(url).await.expect("Invalid URL");
 
-        temp.timeslot = SystemTime::now().checked_add(Duration::from_secs(30)).unwrap();
-
-        state.write().unwrap().txn_pool.push(temp);
-    }
-
-    let relayer = Relayer::new(Duration::from_secs(10), state.clone());
+    let relayer = Relayer::new(Duration::from_secs(10), provider, state.clone());
 
     let addr = "[::1]:9000".parse().unwrap();
     let service = SpaceblockServiceImpl::new(state.clone());
@@ -64,16 +58,6 @@ async fn main() -> Result<()> {
         .serve(addr);
 
     future::select(relayer, Box::pin(server)).await;
-
-    let url = dotenv::var("ETH_WS_URL")?;
-    let provider = Provider::<Ws>::connect(url).await?;
-
-    let mut stream = provider.watch_blocks().await?;
-    while let Some(block) = stream.next().await {
-        println!("{}", block);
-        let block = provider.get_block(block).await?.unwrap();
-        println!("{}", block.number.unwrap());
-    }
 
     Ok(())
 }

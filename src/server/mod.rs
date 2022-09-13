@@ -1,5 +1,8 @@
+use std::convert::TryFrom;
 use std::sync::{Arc, RwLock};
+use std::time::SystemTime;
 
+use ethers::types::{Bytes, NameOrAddress, TransactionRequest};
 use tonic::{Request, Response, Status};
 
 use crate::api::spaceblock_service_server::SpaceblockService;
@@ -24,11 +27,19 @@ impl SpaceblockService for SpaceblockServiceImpl {
         &self,
         request: Request<AddTransactionRequest>,
     ) -> Result<Response<AddTransactionResponse>, Status> {
+        let request = request.get_ref();
+
+        let txn = TransactionRequest::new()
+            .data(request.data.parse::<Bytes>().unwrap())
+            .to(NameOrAddress::Address(request.to_address.parse().unwrap()));
         {
             let mut writable_state = self.state.write().unwrap();
-            writable_state.txn_pool.push(PendingTransaction::new());
+            writable_state.txn_pool.push(PendingTransaction::new(
+                txn,
+                request.from_address.parse().unwrap(),
+                SystemTime::try_from(request.time.clone().expect("Populate time field")).unwrap(),
+            ));
         }
-        println!("Request {:?}", request);
 
         Ok(Response::new(AddTransactionResponse {}))
     }
