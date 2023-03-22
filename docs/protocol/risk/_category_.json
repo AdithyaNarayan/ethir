@@ -1,0 +1,8 @@
+{
+  "label": "Risks",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Various risks to consider while interacting with the protocol."
+  }
+}

@@ -6,7 +6,8 @@ import "../src/EthirFutureToken.sol";
 
 contract CounterTest is Test {
     EthirFutureToken public token;
+
     function setUp() public {
-       token = new EthirFutureToken("Ethir 15-Oct-2022 6:00PM", "ETHIR-151020221800");
+        token = new EthirFutureToken("Ethir 15-Oct-2022 6:00PM", "ETHIR-151020221800");
     }
 }

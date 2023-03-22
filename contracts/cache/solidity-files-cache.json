@@ -46,7 +46,7 @@
       "versionRequirement": ">=0.5.0",
       "artifacts": {
         "DSTest": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "test.sol/DSTest.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "test.sol/DSTest.json"
         }
       }
     },
@@ -90,7 +90,7 @@
       "versionRequirement": ">=0.6.0, <0.9.0",
       "artifacts": {
         "Script": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "Script.sol/Script.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Script.sol/Script.json"
         }
       }
     },
@@ -131,7 +131,7 @@
       "versionRequirement": ">=0.6.0, <0.9.0",
       "artifacts": {
         "stdJson": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "StdJson.sol/stdJson.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "StdJson.sol/stdJson.json"
         }
       }
     },
@@ -177,16 +177,16 @@
       "versionRequirement": ">=0.6.0, <0.9.0",
       "artifacts": {
         "Test": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "Test.sol/Test.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Test.sol/Test.json"
         },
         "stdError": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "Test.sol/stdError.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Test.sol/stdError.json"
         },
         "stdMath": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "Test.sol/stdMath.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Test.sol/stdMath.json"
         },
         "stdStorage": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "Test.sol/stdStorage.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Test.sol/stdStorage.json"
         }
       }
     },
@@ -225,7 +225,7 @@
       "versionRequirement": ">=0.6.0, <0.9.0",
       "artifacts": {
         "Vm": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "Vm.sol/Vm.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Vm.sol/Vm.json"
         }
       }
     },
@@ -264,7 +264,7 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "console": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "console.sol/console.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "console.sol/console.json"
         }
       }
     },
@@ -303,7 +303,46 @@
       "versionRequirement": ">=0.4.22, <0.9.0",
       "artifacts": {
         "console2": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "console2.sol/console2.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "console2.sol/console2.json"
+        }
+      }
+    },
+    "lib/solady/src/utils/LibString.sol": {
+      "lastModificationDate": 1674929573595,
+      "contentHash": "02cc7f3d6df0c513c43765e42cfcfcb5",
+      "sourceName": "lib/solady/src/utils/LibString.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.4",
+      "artifacts": {
+        "LibString": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "LibString.sol/LibString.json"
         }
       }
     },
@@ -342,13 +381,13 @@
       "versionRequirement": ">=0.8.0",
       "artifacts": {
         "ERC20": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "ERC20.sol/ERC20.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "ERC20.sol/ERC20.json"
         }
       }
     },
     "src/EthirFutureToken.sol": {
-      "lastModificationDate": 1662918323675,
-      "contentHash": "ebd98756a42e6fd8d18a055abf05cfdd",
+      "lastModificationDate": 1674930997017,
+      "contentHash": "329e383ad9108db2a673552d8b17c9a5",
       "sourceName": "src/EthirFutureToken.sol",
       "solcConfig": {
         "settings": {
@@ -383,13 +422,13 @@
       "versionRequirement": "^0.8.13",
       "artifacts": {
         "EthirFutureToken": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "EthirFutureToken.sol/EthirFutureToken.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirFutureToken.sol/EthirFutureToken.json"
         }
       }
     },
     "src/EthirFutureTokenFactory.sol": {
-      "lastModificationDate": 1662910738044,
-      "contentHash": "b3214da00ab02f17af9c581efa80e606",
+      "lastModificationDate": 1674930997017,
+      "contentHash": "1c65413a7b0915a950c4578a3f182494",
       "sourceName": "src/EthirFutureTokenFactory.sol",
       "solcConfig": {
         "settings": {
@@ -425,13 +464,133 @@
       "versionRequirement": "^0.8.13",
       "artifacts": {
         "EthirFutureTokenFactory": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "EthirFutureTokenFactory.sol/EthirFutureTokenFactory.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirFutureTokenFactory.sol/EthirFutureTokenFactory.json"
+        }
+      }
+    },
+    "src/EthirToken.sol": {
+      "lastModificationDate": 1674972234676,
+      "contentHash": "1d282a84eacdf6b14db77081fed3e2c4",
+      "sourceName": "src/EthirToken.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/solady/src/utils/LibString.sol",
+        "src/IEthirTokenFactory.sol"
+      ],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "EthirToken": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirToken.sol/EthirToken.json"
+        }
+      }
+    },
+    "src/EthirTokenImpl.sol": {
+      "lastModificationDate": 1674930997017,
+      "contentHash": "10724d68a8bcbfce098d173d3d7c4174",
+      "sourceName": "src/EthirTokenImpl.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "EthirTokenImpl": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirTokenImpl.sol/EthirTokenImpl.json"
+        }
+      }
+    },
+    "src/IEthirTokenFactory.sol": {
+      "lastModificationDate": 1674930997016,
+      "contentHash": "8c8501f910fb1ead0cd9558e45a3da4c",
+      "sourceName": "src/IEthirTokenFactory.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "IEthirTokenFactory": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "IEthirTokenFactory.sol/IEthirTokenFactory.json"
         }
       }
     },
     "test/EthirFutureToken.t.sol": {
-      "lastModificationDate": 1662905787605,
-      "contentHash": "1bebcbcb39d2b1a91494090ee0ba21ee",
+      "lastModificationDate": 1674930997016,
+      "contentHash": "72f97d90b4fcc2e64c5c628129f45f90",
       "sourceName": "test/EthirFutureToken.t.sol",
       "solcConfig": {
         "settings": {
@@ -474,7 +633,61 @@
       "versionRequirement": "^0.8.13",
       "artifacts": {
         "CounterTest": {
-          "0.8.13+commit.abaa5c0e.Darwin.appleclang": "EthirFutureToken.t.sol/CounterTest.json"
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirFutureToken.t.sol/CounterTest.json"
+        }
+      }
+    },
+    "test/EthirToken.t.sol": {
+      "lastModificationDate": 1674972260738,
+      "contentHash": "1478304f61324e0551eb1a3dd339ec07",
+      "sourceName": "test/EthirToken.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Script.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/solady/src/utils/LibString.sol",
+        "src/EthirToken.sol",
+        "src/EthirTokenImpl.sol",
+        "src/IEthirTokenFactory.sol"
+      ],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "EthirTokenTest": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirToken.t.sol/EthirTokenTest.json"
+        },
+        "IERC20": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "EthirToken.t.sol/IERC20.json"
         }
       }
     }

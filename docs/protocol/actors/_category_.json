@@ -1,0 +1,8 @@
+{
+  "label": "Actors",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "This section describes the various actors that are crucial to the functioning of the protocol"
+  }
+}

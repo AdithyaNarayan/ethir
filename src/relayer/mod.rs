@@ -31,9 +31,7 @@ pub struct Relayer {
     pub state: Arc<RwLock<State>>,
 
     poll_time: Duration,
-    contract: EthirFutureToken<
-        SignerMiddleware<FlashbotsMiddleware<Provider<Ws>, Wallet<SigningKey>>, Wallet<SigningKey>>,
-    >,
+    contract: EthirFutureToken<SignerMiddleware<Provider<Ws>, Wallet<SigningKey>>>,
 }
 
 impl Relayer {
@@ -43,14 +41,15 @@ impl Relayer {
             .parse::<Wallet<SigningKey>>()
             .expect("Invalid private keys");
 
-        let client = SignerMiddleware::new(
-            FlashbotsMiddleware::new(
-                provider,
-                Url::parse("https://relay-goerli.flashbots.net").unwrap(),
-                signer.clone().with_chain_id(5u64),
-            ),
-            signer.clone().with_chain_id(5u64),
-        );
+        // let client = SignerMiddleware::new(
+        //     FlashbotsMiddleware::new(
+        //         provider,
+        //         Url::parse("https://relay-goerli.flashbots.net").unwrap(),
+        //         signer.clone().with_chain_id(5u64),
+        //     ),
+        //     signer.clone().with_chain_id(5u64),
+        // );
+        let client = SignerMiddleware::new(provider, signer.clone().with_chain_id(5u64));
         let client = Arc::new(client);
 
         // TODO: Replace with CREATE2

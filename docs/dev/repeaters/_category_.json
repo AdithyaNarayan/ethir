@@ -1,0 +1,8 @@
+{
+  "label": "Repeaters",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Specifications and information required to implement a Repeater node."
+  }
+}
