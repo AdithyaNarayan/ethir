@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "./interfaces/IEthirTokenFactory.sol";
+import "../../interfaces/IEthirTokenFactory.sol";
 
 /// @title Ethir Token
 /// @notice Minimal Proxy contract that represents a token that expires at a particular block
@@ -10,14 +10,21 @@ contract EthirToken {
     address immutable implementation;
 
     constructor() {
-        (bytes32 _expiryBlock, address _implementation) = IEthirTokenFactory(
-            msg.sender
-        ).getParameters();
+        (
+            bytes32 _expiryBlock,
+            address _implementation,
+            address _collateralManager,
+            address _oracle,
+            uint256 _expiryBlockNumber
+        ) = IEthirTokenFactory(msg.sender).getParameters();
 
         implementation = _implementation;
 
         assembly {
             sstore(0, _expiryBlock)
+            sstore(1, _collateralManager)
+            sstore(2, _oracle)
+            sstore(3, _expiryBlockNumber)
         }
     }
 

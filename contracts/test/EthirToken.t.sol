@@ -2,8 +2,10 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
-import "../src/EthirToken.sol";
-import "../src/EthirTokenImpl.sol";
+import "../src/core/token/EthirToken.sol";
+import "../src/core/token/EthirTokenImpl.sol";
+import "../src/core/EthirCollateralManager.sol";
+import "../src/core/EthirOracle.sol";
 import "../src/interfaces/IEthirTokenFactory.sol";
 
 import {LibString} from "solady/utils/LibString.sol";
@@ -16,12 +18,28 @@ interface IERC20 {
 
 contract EthirTokenTest is Test, IEthirTokenFactory {
     address ethirTokenImpl;
+    address collateralManager;
+    address oracle;
 
     function setUp() external {
         ethirTokenImpl = address(new EthirTokenImpl());
+
+        oracle = address(new EthirOracle(address(this), address(0x0)));
+
+        collateralManager = address(new EthirCollateralManager(oracle));
     }
 
-    function getParameters() external view returns (bytes32, address) {
+    function getParameters()
+        external
+        view
+        returns (
+            bytes32,
+            address,
+            address,
+            address,
+            uint256
+        )
+    {
         string memory blockNumberString = LibString.toString(block.number);
 
         bytes32 blockNumberBytes;
@@ -29,7 +47,13 @@ contract EthirTokenTest is Test, IEthirTokenFactory {
             blockNumberBytes := mload(add(blockNumberString, 0x20))
         }
 
-        return (blockNumberBytes, ethirTokenImpl);
+        return (
+            blockNumberBytes,
+            ethirTokenImpl,
+            collateralManager,
+            oracle,
+            block.number
+        );
     }
 
     function testSymbol() external {

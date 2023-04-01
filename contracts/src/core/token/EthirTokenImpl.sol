@@ -1,12 +1,25 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
+import {LibString} from "solady/utils/LibString.sol";
+import "../../interfaces/IEthirCollateralManager.sol";
+import "../../interfaces/IEthirOracle.sol";
+
 /// @title Ethir Token Implementation
 /// @notice Partial Implementation of ERC20 for use in Clone Pattern (EIP-1167)
 /// @dev Implementation from Solady/ERC20
 contract EthirTokenImpl {
     struct Slot0 {
         bytes32 expiryBlock;
+    }
+    struct Slot1 {
+        IEthirCollateralManager collateralManager;
+    }
+    struct Slot2 {
+        IEthirOracle oracle;
+    }
+    struct Slot3 {
+        uint256 expiryBlockNumber;
     }
 
     event Transfer(address indexed from, address indexed to, uint256 amount);
@@ -16,9 +29,14 @@ contract EthirTokenImpl {
         uint256 amount
     );
 
-    Slot0 slot0;
+    uint8 immutable ALPHA = 70;
 
-    uint8 public constant decimals = 0;
+    Slot0 slot0;
+    Slot1 slot1;
+    Slot2 slot2;
+    Slot3 slot3;
+
+    uint8 public constant decimals = 8;
 
     uint256 public totalSupply;
 
@@ -26,9 +44,43 @@ contract EthirTokenImpl {
 
     mapping(address => mapping(address => uint256)) public allowance;
 
-    function mint(address to, uint256 amount) public {
-        // TODO: check collateral ratio
+    /// @notice Denotes the balance that the user has minted that is yet to be burnt
+    mapping(address => uint256) public floatingBalanceOf;
+    mapping(address => uint256) public burnRewards;
+
+    function mint(
+        address to,
+        uint256 amount,
+        address callback,
+        bytes calldata data
+    ) public payable {
         _mint(to, amount);
+
+        unchecked {
+            floatingBalanceOf[to] += amount;
+        }
+
+        (uint256 healthFactor, ) = IEthirCollateralManager(
+            slot1.collateralManager
+        ).getHealthFactor(to);
+
+        require(
+            healthFactor > 10**9,
+            "Cannot mint due to insufficient collateral"
+        );
+
+        uint256 balanceBefore = address(this).balance;
+        (bool success, ) = callback.call(data);
+        require(success);
+        require(
+            address(this).balance - balanceBefore >
+                (ALPHA *
+                    slot2.oracle.getValueInWei(slot3.expiryBlockNumber) *
+                    amount) /
+                    100
+        );
+
+        burnRewards[to] += address(this).balance - balanceBefore;
     }
 
     function burn(
@@ -42,6 +94,14 @@ contract EthirTokenImpl {
             gas = gas - gasleft();
         }
         _burn(from, gas);
+
+        uint256 burnReward = (burnRewards[msg.sender] * gas) /
+            floatingBalanceOf[msg.sender];
+
+        burnRewards[msg.sender] -= burnReward;
+        floatingBalanceOf[msg.sender] -= gas;
+
+        payable(msg.sender).transfer(burnReward);
 
         return result;
     }

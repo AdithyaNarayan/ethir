@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {LibString} from "solady/utils/LibString.sol";
-import "../EthirToken.sol";
+import "../core/token/EthirToken.sol";
 
 library LibTokenAddressGenerator {
     bytes32 public constant INIT_CODE_HASH =
