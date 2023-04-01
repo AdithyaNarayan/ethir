@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+// The request transaction details
+message AddTransactionRequest {
+  string id = 1;
+  string from_address = 2;
+  string to_address = 3;
+  string data = 4;
+
+  google.protobuf.Timestamp time = 5;
+}
+
+// The response
+message AddTransactionResponse {}
+// The space block service definition.
+service SpaceblockService {
+  // Adds a transaction to the churner
+  rpc AddTransaction(AddTransactionRequest) returns (AddTransactionResponse);
+}
