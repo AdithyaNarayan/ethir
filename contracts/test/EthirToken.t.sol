@@ -24,7 +24,7 @@ contract EthirTokenTest is Test, IEthirTokenFactory {
     function setUp() external {
         ethirTokenImpl = address(new EthirTokenImpl());
 
-        oracle = address(new EthirOracle(address(this), address(0x0)));
+        oracle = address(new EthirOracle(address(this)));
 
         collateralManager = address(new EthirCollateralManager(oracle));
     }

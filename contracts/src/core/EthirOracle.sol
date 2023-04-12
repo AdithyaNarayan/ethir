@@ -2,7 +2,6 @@
 pragma solidity ^0.8.13;
 
 import "../interfaces/IEthirOracle.sol";
-import "../interfaces/IUniswapQuoter.sol";
 import "../library/LibTokenAddressGenerator.sol";
 import "@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol";
 import "@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol";
@@ -10,19 +9,17 @@ import "@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol";
 
 contract EthirOracle is IEthirOracle {
     address public immutable factory;
-    IUniswapQuoter immutable quoter;
 
     address constant WETH9_ADDRESS =
         address(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
 
-    IUniswapV3Factory constant UNISWAP_V3_FACTORY =
-        IUniswapV3Factory(0x1F98431c8aD98523631AE4a59f267346ea31F984);
+    IUniswapV3Factory public constant UNISWAP_V3_FACTORY =
+        IUniswapV3Factory(0x0C7BBB021d72dB4FfBa37bDF4ef055eECdbc0a29);
 
     uint256 constant DEFAULT = 30 gwei;
 
-    constructor(address _factory, address _quoter) {
+    constructor(address _factory) {
         factory = _factory;
-        quoter = IUniswapQuoter(_quoter);
     }
 
     function getValueInWei(uint256 expiryBlockNumber)
