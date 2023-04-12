@@ -81,6 +81,10 @@ contract EthirToken {
 
                 return(0, 0x60)
             }
+            // transfer of funds
+            case 0x0 {
+                return(0, 0x0)
+            }
         }
 
         address impl = implementation;

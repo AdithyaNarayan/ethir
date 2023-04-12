@@ -3867,8 +3867,8 @@
       }
     },
     "src/core/EthirOracle.sol": {
-      "lastModificationDate": 1681281035691,
-      "contentHash": "671388ebdd708e0733930ad3dd678f55",
+      "lastModificationDate": 1681290201943,
+      "contentHash": "799904e4e86108230b0f59135edc6706",
       "sourceName": "src/core/EthirOracle.sol",
       "solcConfig": {
         "settings": {
@@ -3970,8 +3970,8 @@
       }
     },
     "src/core/token/EthirToken.sol": {
-      "lastModificationDate": 1680281182036,
-      "contentHash": "3c729ddfc415ed3588be48feb63e06b9",
+      "lastModificationDate": 1681291558149,
+      "contentHash": "b492eb220e6aca50b634df63cf76796b",
       "sourceName": "src/core/token/EthirToken.sol",
       "solcConfig": {
         "settings": {
@@ -4012,8 +4012,8 @@
       }
     },
     "src/core/token/EthirTokenImpl.sol": {
-      "lastModificationDate": 1680281188840,
-      "contentHash": "a87eee8a08a1a01d8fa195dd925c4f2f",
+      "lastModificationDate": 1681296655908,
+      "contentHash": "012f8da5aa33dfe295750ce6ada965f4",
       "sourceName": "src/core/token/EthirTokenImpl.sol",
       "solcConfig": {
         "settings": {
@@ -4300,8 +4300,8 @@
       }
     },
     "test/Demo.t.sol": {
-      "lastModificationDate": 1681281283525,
-      "contentHash": "5c024ca6de6c6911f5adbc6ba63a41a9",
+      "lastModificationDate": 1681296920912,
+      "contentHash": "6ecbe2023cc6f7e013f951e6d2ef48b3",
       "sourceName": "test/Demo.t.sol",
       "solcConfig": {
         "settings": {

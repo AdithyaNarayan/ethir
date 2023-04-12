@@ -31,6 +31,25 @@ contract DemoTest is UniswapFixture {
         ethirFactory.setImplementation(address(ethirTokenImpl));
         ethirFactory.setCollateralManager(address(ethirCollateralManager));
         ethirFactory.setOracle(address(ethirOracle));
+
+        vm.deal(address(this), 100 ether);
+    }
+
+    function repeaterPayBack(uint256 expiryBlockNumber, uint256 mintAmount)
+        public
+    {
+        uint256 amountToSend = (71 *
+            ethirOracle.getValueInWei(expiryBlockNumber) *
+            mintAmount) / 100;
+
+        address token = LibTokenAddressGenerator.getTokenFor(
+            expiryBlockNumber,
+            address(ethirFactory)
+        );
+
+        address payable payableToken = payable(token);
+
+        payableToken.transfer(amountToSend);
     }
 
     function testUniswapV3FactoryDeployment() external {
@@ -43,4 +62,50 @@ contract DemoTest is UniswapFixture {
 
         assertEq(factory.getPool(token, address(weth9), 3000), address(0x0));
     }
+
+    function testOraclePricing() external {
+        ethirFactory.deploy(10_000);
+        assertEq(ethirOracle.getValueInWei(10_000), 30 gwei);
+    }
+
+    function arbitraryInternalTransaction() external view {
+        uint256 gas = gasleft();
+        for (uint256 i = 0; i < 10; ++i) {
+            assembly {
+                mstore(0x0, 0x1)
+                pop(mload(0x0))
+            }
+        }
+
+        unchecked {
+            gas = gas - gasleft();
+        }
+    }
+
+    function testMintAndDeal() external {
+        ethirCollateralManager.depositCollateral{value: 1 ether}();
+
+        uint256 expiryBlockNumber = block.number + 10_000;
+        uint256 amount = 10_000;
+
+        address token = ethirFactory.deploy(expiryBlockNumber);
+        EthirTokenImpl(token).mint(
+            address(this),
+            amount,
+            address(this),
+            abi.encodeWithSelector(
+                this.repeaterPayBack.selector,
+                expiryBlockNumber,
+                amount
+            )
+        );
+
+        EthirTokenImpl(token).burn(
+            address(this),
+            address(this),
+            abi.encodeWithSelector(this.arbitraryInternalTransaction.selector)
+        );
+    }
+
+    receive() external payable {}
 }

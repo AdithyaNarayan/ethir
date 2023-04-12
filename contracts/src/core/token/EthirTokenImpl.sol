@@ -93,13 +93,13 @@ contract EthirTokenImpl {
         unchecked {
             gas = gas - gasleft();
         }
-        _burn(from, gas);
 
         uint256 burnReward = (burnRewards[msg.sender] * gas) /
             floatingBalanceOf[msg.sender];
 
-        burnRewards[msg.sender] -= burnReward;
+        _burn(from, gas);
         floatingBalanceOf[msg.sender] -= gas;
+        burnRewards[msg.sender] -= burnReward;
 
         payable(msg.sender).transfer(burnReward);
 

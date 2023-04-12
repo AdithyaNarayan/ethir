@@ -75,12 +75,38 @@ contract EthirOracle is IEthirOracle {
             factory
         );
 
+        address poolPrev = UNISWAP_V3_FACTORY.getPool(
+            tokenPrev,
+            WETH9_ADDRESS,
+            3000
+        );
+        address poolPrev2 = UNISWAP_V3_FACTORY.getPool(
+            tokenPrev2,
+            WETH9_ADDRESS,
+            3000
+        );
+        address poolPrev3 = UNISWAP_V3_FACTORY.getPool(
+            tokenPrev3,
+            WETH9_ADDRESS,
+            3000
+        );
+        address poolPrev4 = UNISWAP_V3_FACTORY.getPool(
+            tokenPrev4,
+            WETH9_ADDRESS,
+            3000
+        );
+        address poolPrev5 = UNISWAP_V3_FACTORY.getPool(
+            tokenPrev5,
+            WETH9_ADDRESS,
+            3000
+        );
+
         if (
-            tokenPrev == address(0x0) ||
-            tokenPrev2 == address(0x0) ||
-            tokenPrev3 == address(0x0) ||
-            tokenPrev4 == address(0x0) ||
-            tokenPrev5 == address(0x0)
+            poolPrev == address(0x0) ||
+            poolPrev2 == address(0x0) ||
+            poolPrev3 == address(0x0) ||
+            poolPrev4 == address(0x0) ||
+            poolPrev5 == address(0x0)
         ) {
             return DEFAULT;
         }
