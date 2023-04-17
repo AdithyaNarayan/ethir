@@ -69,16 +69,11 @@ contract DemoTest is UniswapFixture {
     }
 
     function arbitraryInternalTransaction() external view {
-        uint256 gas = gasleft();
         for (uint256 i = 0; i < 10; ++i) {
             assembly {
                 mstore(0x0, 0x1)
                 pop(mload(0x0))
             }
-        }
-
-        unchecked {
-            gas = gas - gasleft();
         }
     }
 
@@ -99,6 +94,7 @@ contract DemoTest is UniswapFixture {
                 amount
             )
         );
+        vm.roll(300);
 
         EthirTokenImpl(token).burn(
             address(this),
